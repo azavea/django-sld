@@ -1,8 +1,15 @@
 import unittest
 import djsld, random
 import generator
-from models import Hydrant
 from django.contrib.gis.geos import GEOSGeometry
+from django.contrib.gis.db import models
+
+class Hydrant(models.Model):
+    number = models.IntegerField()
+    location = models.PointField()
+    pressure = models.FloatField()
+
+    objects = models.GeoManager()
 
 class QuantileTest(unittest.TestCase):
     def setUp(self):
