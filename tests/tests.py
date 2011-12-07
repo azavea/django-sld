@@ -1,6 +1,5 @@
-import unittest
-import djsld, random
-import generator
+import unittest, random
+import djsld.generator
 from django.contrib.gis.geos import GEOSGeometry
 from django.contrib.gis.db import models
 
