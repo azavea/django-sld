@@ -84,6 +84,10 @@ class ClassificationTest(unittest.TestCase):
 
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
 
+        self.assertEqual(len(sld._node.xpath('//sld:PointSymbolizer', namespaces=sld._nsmap)), 5)
+        self.assertEqual(len(sld._node.xpath('//sld:LineSymbolizer', namespaces=sld._nsmap)), 0)
+        self.assertEqual(len(sld._node.xpath('//sld:PolygonSymbolizer', namespaces=sld._nsmap)), 0)
+
     def test_classes_geofield_ln(self):
         """
         Test the geofield optional parameter for a line-based geographic model.
@@ -98,6 +102,10 @@ class ClassificationTest(unittest.TestCase):
 
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
 
+        self.assertEqual(len(sld._node.xpath('//sld:PointSymbolizer', namespaces=sld._nsmap)), 0)
+        self.assertEqual(len(sld._node.xpath('//sld:LineSymbolizer', namespaces=sld._nsmap)), 5)
+        self.assertEqual(len(sld._node.xpath('//sld:PolygonSymbolizer', namespaces=sld._nsmap)), 0)
+
     def test_classes_geofield_poly(self):
         """
         Test the geofield optional parameter for a polygon-based geographic model.
@@ -111,6 +119,10 @@ class ClassificationTest(unittest.TestCase):
         sld = generator.as_equal_interval(Reservoir.objects.filter(name__startswith='City'), 'volume', 5, geofield='coastline')
 
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
+
+        self.assertEqual(len(sld._node.xpath('//sld:PointSymbolizer', namespaces=sld._nsmap)), 0)
+        self.assertEqual(len(sld._node.xpath('//sld:LineSymbolizer', namespaces=sld._nsmap)), 0)
+        self.assertEqual(len(sld._node.xpath('//sld:PolygonSymbolizer', namespaces=sld._nsmap)), 5)
 
     def test_ei_classes_pt(self):
         """
