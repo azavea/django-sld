@@ -6,49 +6,51 @@ from numpy import array, ndarray
 from pysal.esda.mapclassify import *
 from django.contrib.gis.db.models import fields
 
-def as_equal_interval(queryset, field, nclasses):
+def as_equal_interval(*args, **kwargs):
     """
     Generate equal interval classes from the provided queryset. If the queryset
     is empty, no class breaks are returned.
 
-    @type queryset: QuerySet
+    @type  queryset: QuerySet
     @param queryset: The query set that contains the entire distribution of
         data values.
-    @type field: string
+    @type  field: string
     @param field: The name of the field on the model in the queryset that 
         contains the data values.
-    @type nclasses: integer
+    @type  nclasses: integer
     @param nclasses: The number of class breaks desired.
+    @type  geofield: string
+    @param geofield: The name of the geometry field. Defaults to 'geom'.
     @rtype: L{sld.StyledLayerDescriptor}
     @returns: An SLD object that represents the class breaks.
     """
-    return _as_classification(Equal_Interval, queryset, field, nclasses)
+    return _as_classification(Equal_Interval, *args, **kwargs)
 
-def as_fisher_jenks(queryset, field, nclasses):
-    return _as_classification(Fisher_Jenks, queryset, field, nclasses)
+def as_fisher_jenks(*args, **kwargs):
+    return _as_classification(Fisher_Jenks, *args, **kwargs)
 
-def as_jenks_caspall(queryset, field, nclasses):
-    return _as_classification(Jenks_Caspall, queryset, field, nclasses)
+def as_jenks_caspall(*args, **kwargs):
+    return _as_classification(Jenks_Caspall, *args, **kwargs)
 
-def as_jenks_caspall_forced(queryset, field, nclasses):
-    return _as_classification(Jenks_Caspall_Forced, queryset, field, nclasses)
+def as_jenks_caspall_forced(*args, **kwargs):
+    return _as_classification(Jenks_Caspall_Forced, *args, **kwargs)
 
-def as_jenks_caspall_sampled(queryset, field, nclasses):
-    return _as_classification(Jenks_Caspall_Sampled, queryset, field, nclasses)
+def as_jenks_caspall_sampled(*args, **kwargs):
+    return _as_classification(Jenks_Caspall_Sampled, *args, **kwargs)
 
-def as_max_p_classifier(queryset, field, nclasses):
-    return _as_classification(Max_P_Classifier, queryset, field, nclasses)
+def as_max_p_classifier(*args, **kwargs):
+    return _as_classification(Max_P_Classifier, *args, **kwargs)
 
-def as_maximum_breaks(queryset, field, nclasses):
-    return _as_classification(Maximum_Breaks, queryset, field, nclasses)
+def as_maximum_breaks(*args, **kwargs):
+    return _as_classification(Maximum_Breaks, *args, **kwargs)
 
-def as_natural_breaks(queryset, field, nclasses):
-    return _as_classification(Natural_Breaks, queryset, field, nclasses)
+def as_natural_breaks(*args, **kwargs):
+    return _as_classification(Natural_Breaks, *args, **kwargs)
 
-def as_quantiles(queryset, field, nclasses):
-    return _as_classification(Quantiles, queryset, field, nclasses)
+def as_quantiles(*args, **kwargs):
+    return _as_classification(Quantiles, *args, **kwargs)
 
-def _as_classification(classification, queryset, field, nclasses):
+def _as_classification(classification, queryset, field, nclasses, geofield='geom'):
     """
     Accept a queryset of objects, and return the values of the class breaks 
     on the data distribution. If the queryset is empty, no class breaks are
@@ -74,13 +76,15 @@ def _as_classification(classification, queryset, field, nclasses):
     @param    field: The name of the field on the model in the queryset that contains the data values.
     @type  nclasses: integer
     @param nclasses: The number of class breaks desired.
+    @type  geofield: string
+    @param geofield: The name of the geography column on the model. Defaults to 'geom'
     @rtype: L{sld.StyledLayerDescriptor}
     @returns: An SLD class object that represents the classification scheme 
         and filters.
     """
     thesld = StyledLayerDescriptor()
 
-    ftype = queryset.model._meta.get_field_by_name(field)[0]
+    ftype = queryset.model._meta.get_field_by_name(geofield)[0]
     if isinstance(ftype, fields.LineStringField) or isinstance(ftype, fields.MultiLineStringField):
         symbolizer = LineSymbolizer
     elif isinstance(ftype, fields.PolygonField) or isinstance(ftype, fields.MultiPolygonField):
