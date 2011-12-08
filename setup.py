@@ -35,7 +35,8 @@ class RunTests(Command):
             os.environ[env_name] = str(env_value)
 
         this_dir = os.getcwd()
-        testproj_dir = os.path.join(this_dir, "tests")
+        sys.path.append(this_dir)
+        testproj_dir = os.path.join(this_dir, "djsld/tests")
         os.chdir(testproj_dir)
         sys.path.append(testproj_dir)
         from django.core.management import execute_manager
@@ -45,7 +46,7 @@ class RunTests(Command):
         settings_mod = __import__(settings_file, {}, {}, [''])
         prev_argv = list(sys.argv)
         try:
-            sys.argv = [__file__, "test", "djsld"] + self.extra_args
+            sys.argv = [__file__, "test", "sampleapp"] + self.extra_args
             execute_manager(settings_mod, argv=sys.argv)
         finally:
             sys.argv = prev_argv

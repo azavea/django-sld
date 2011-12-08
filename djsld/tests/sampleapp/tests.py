@@ -1,14 +1,7 @@
 import unittest, random
-import djsld.generator
+from djsld import generator
 from django.contrib.gis.geos import GEOSGeometry
-from django.contrib.gis.db import models
-
-class Hydrant(models.Model):
-    number = models.IntegerField()
-    location = models.PointField()
-    pressure = models.FloatField()
-
-    objects = models.GeoManager()
+from models import *
 
 class QuantileTest(unittest.TestCase):
     def setUp(self):
@@ -18,9 +11,15 @@ class QuantileTest(unittest.TestCase):
             h = Hydrant(number=x, pressure=1, location=GEOSGeometry('POINT(%d %d)'%(x,x,)))
             h.save()
 
+            p = Pipeline(material='concrete', pressure=1, path=GEOSGeometry('LINESTRING(%d %d, %d %d)'%(x,x,x+1,x+1,)))
+            p.save()
+
         for y in range(0,50):
             h = Hydrant(number=y*y, pressure=2, location=GEOSGeometry('POINT(%d %d)'%(y,y,)))
             h.save()
+
+            p = Pipeline(material='concrete', pressure=2, path=GEOSGeometry('LINESTRING(%d %d, %d %d)'%(x,x,x+1,x+1,)))
+            p.save()
 
     def test_ei_classes(self):
         sld = generator.as_equal_interval(Hydrant.objects.filter(pressure=1), 'number', 5)
