@@ -1,6 +1,34 @@
 """
-A class break generator.
+Generate StyledLayerDescriptor objecs for django querysets.
+
+This generator uses the python-sld and pysal libraries to generate classes
+for map classification, and returns a StyledLayerDescriptor class object. This
+class object may be serialized to an SLD XML file, which is useful for many
+GIS and mapping software packages.
+
+License
+=======
+Copyright 2011 David Zwarg <U{dzwarg@azavea.com}>
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+U{http://www.apache.org/licenses/LICENSE-2.0}
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+@author: David Zwarg
+@contact: dzwarg@azavea.com
+@copyright: 2011, Azavea
+@license: Apache 2.0
+@version: 1.0.0
 """
+
 from sld import *
 from numpy import array, ndarray
 from pysal.esda.mapclassify import *

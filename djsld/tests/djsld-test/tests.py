@@ -1,3 +1,32 @@
+"""
+Unit tests for the django-sld library.
+
+The unit tests check the number of classes and their values generated
+by the various classification methods.
+
+License
+=======
+Copyright 2011 David Zwarg <U{dzwarg@azavea.com}>
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+U{http://www.apache.org/licenses/LICENSE-2.0}
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+@author: David Zwarg
+@contact: dzwarg@azavea.com
+@copyright: 2011, Azavea
+@license: Apache 2.0
+@version: 1.0.0
+"""
+
 import unittest, random
 from djsld import generator
 from django.contrib.gis.geos import GEOSGeometry
@@ -5,7 +34,14 @@ from django.db.models.fields import FieldDoesNotExist
 from models import *
 
 class ClassificationTest(unittest.TestCase):
+    """
+    A set of test routines for the classification tools.
+    """
+
     def setUp(self):
+        """
+        Set up the test data.
+        """
         for x in range(0,5):
             r = Reservoir(name='City %d' % x, volume=(x+1)*10000, coastline=GEOSGeometry('POLYGON((%d %d, %d %d, %d %d, %d %d))' % (x,x,x+1,x,x,x+1,x,x,)))
             r.save()
@@ -27,11 +63,17 @@ class ClassificationTest(unittest.TestCase):
             h.save()
 
     def tearDown(self):
+        """
+        Destroy the test data.
+        """
         Hydrant.objects.all().delete()
         Pipeline.objects.all().delete()
         Reservoir.objects.all().delete()
 
     def test_classes_geofield_pt(self):
+        """
+        Test the geofield optional parameter for a point-based geographic model.
+        """
         try:
             generator.as_equal_interval(Hydrant.objects.filter(pressure=1), 'number', 5)
             self.fail('Geometry field is not default, and should throw an exception.')
@@ -43,6 +85,9 @@ class ClassificationTest(unittest.TestCase):
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
 
     def test_classes_geofield_ln(self):
+        """
+        Test the geofield optional parameter for a line-based geographic model.
+        """
         try:
             generator.as_equal_interval(Pipeline.objects.filter(material='ceramic'), 'diameter', 5)
             self.fail('Geometry field is not default, and should throw an exception.')
@@ -54,6 +99,9 @@ class ClassificationTest(unittest.TestCase):
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
 
     def test_classes_geofield_poly(self):
+        """
+        Test the geofield optional parameter for a polygon-based geographic model.
+        """
         try:
             generator.as_equal_interval(Reservoir.objects.filter(name__startswith='City'), 'volume', 5)
             self.fail('Geometry field is not default, and should throw an exception.')
@@ -65,6 +113,9 @@ class ClassificationTest(unittest.TestCase):
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
 
     def test_ei_classes_pt(self):
+        """
+        Test the equal interval classifier for a point-based geographic model.
+        """
         sld = generator.as_equal_interval(Hydrant.objects.filter(pressure=1), 'number', 5, geofield='location')
 
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
@@ -79,6 +130,9 @@ class ClassificationTest(unittest.TestCase):
             self.assertEqual(n.text, expected[i], 'Class %d is not correct.' % i)
 
     def test_ei_classes_ln(self):
+        """
+        Test the equal interval classifier for a line-based geographic model.
+        """
         sld = generator.as_equal_interval(Pipeline.objects.filter(material='ceramic'), 'diameter', 5, geofield='path')
 
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
@@ -93,6 +147,9 @@ class ClassificationTest(unittest.TestCase):
             self.assertEqual(n.text, expected[i], 'Class %d is not correct.' % i)
 
     def test_ei_classes_poly(self):
+        """
+        Test the equal interval classifier for a polygon-based geographic model.
+        """
         sld = generator.as_equal_interval(Reservoir.objects.filter(name__startswith='City'), 'volume', 5, geofield='coastline')
 
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
@@ -107,6 +164,9 @@ class ClassificationTest(unittest.TestCase):
             self.assertEqual(n.text, expected[i], 'Class %d is not correct.' % i)
 
     def test_fj_classes_pt(self):
+        """
+        Test the Fisher Jenks classifier for a point-based geographic model.
+        """
         sld = generator.as_fisher_jenks(Hydrant.objects.filter(pressure=1), 'number', 5, geofield='location')
 
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
@@ -121,6 +181,9 @@ class ClassificationTest(unittest.TestCase):
             self.assertEqual(n.text, expected[i], 'Class %d is not correct.' % i)
 
     def test_fj_classes_ln(self):
+        """
+        Test the Fisher Jenks classifier for a line-based geographic model.
+        """
         sld = generator.as_fisher_jenks(Pipeline.objects.filter(material='ceramic'), 'diameter', 5, geofield='path')
 
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
@@ -135,6 +198,9 @@ class ClassificationTest(unittest.TestCase):
             self.assertEqual(n.text, expected[i], 'Class %d is not correct.' % i)
 
     def test_fj_classes_poly(self):
+        """
+        Test the Fisher Jenks classifier for a polygon-based geographic model.
+        """
         sld = generator.as_fisher_jenks(Reservoir.objects.filter(name__startswith='City'), 'volume', 5, geofield='coastline')
 
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
@@ -149,6 +215,9 @@ class ClassificationTest(unittest.TestCase):
             self.assertEqual(n.text, expected[i], 'Class %d is not correct.' % i)
 
     def test_jc_classes_pt(self):
+        """
+        Test the Jenks Caspall classifier for a point-based geographic model.
+        """
         sld = generator.as_jenks_caspall(Hydrant.objects.filter(pressure=1), 'number', 5, geofield='location')
 
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
@@ -162,6 +231,9 @@ class ClassificationTest(unittest.TestCase):
             self.assertEqual(n.text, expected[i], 'Class %d is not correct.' % i)
 
     def test_jc_classes_ln(self):
+        """
+        Test the Jenks Caspall classifier for a line-based geographic model.
+        """
         sld = generator.as_jenks_caspall(Pipeline.objects.filter(material='ceramic'), 'diameter', 5, geofield='path')
 
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
@@ -175,6 +247,9 @@ class ClassificationTest(unittest.TestCase):
             self.assertEqual(n.text, expected[i], 'Class %d is not correct.' % i)
 
     def test_jc_classes_poly(self):
+        """
+        Test the Jenks Caspall classifier for a polygon-based geographic model.
+        """
         sld = generator.as_jenks_caspall(Reservoir.objects.filter(name__startswith='City'), 'volume', 5, geofield='coastline')
 
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
@@ -188,6 +263,9 @@ class ClassificationTest(unittest.TestCase):
             self.assertEqual(n.text, expected[i], 'Class %d is not correct.' % i)
 
     def test_jcf_classes_pt(self):
+        """
+        Test the Jenks Caspall Forced classifier for a point-based geographic model.
+        """
         sld = generator.as_jenks_caspall_forced(Hydrant.objects.filter(pressure=1), 'number', 5, geofield='location')
 
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
@@ -201,6 +279,9 @@ class ClassificationTest(unittest.TestCase):
             self.assertEqual(n.text, expected[i], 'Class %d is not correct.' % i)
 
     def test_jcf_classes_ln(self):
+        """
+        Test the Jenks Caspall Forced classifier for a line-based geographic model.
+        """
         sld = generator.as_jenks_caspall_forced(Pipeline.objects.filter(material='ceramic'), 'diameter', 5, geofield='path')
 
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
@@ -214,6 +295,9 @@ class ClassificationTest(unittest.TestCase):
             self.assertEqual(n.text, expected[i], 'Class %d is not correct.' % i)
 
     def test_jcf_classes_poly(self):
+        """
+        Test the Jenks Caspall Forced classifier for a polygon-based geographic model.
+        """
         sld = generator.as_jenks_caspall_forced(Reservoir.objects.filter(name__startswith='City'), 'volume', 5, geofield='coastline')
 
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
@@ -242,6 +326,9 @@ class ClassificationTest(unittest.TestCase):
     #    self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
 
     def test_mb_classes_pt(self):
+        """
+        Test the Maximum Breaks classifier for a point-based geographic model.
+        """
         sld = generator.as_maximum_breaks(Hydrant.objects.filter(pressure=1), 'number', 5, geofield='location')
    
         # request 5, get 2 back.
@@ -256,6 +343,9 @@ class ClassificationTest(unittest.TestCase):
             self.assertEqual(n.text, expected[i], 'Class %d is not correct.' % i)
 
     def test_mb_classes_ln(self):
+        """
+        Test the Maximum Breaks classifier for a line-based geographic model.
+        """
         sld = generator.as_maximum_breaks(Pipeline.objects.filter(material='ceramic'), 'diameter', 5, geofield='path')
    
         # request 5, get 2 back.
@@ -270,6 +360,9 @@ class ClassificationTest(unittest.TestCase):
             self.assertEqual(n.text, expected[i], 'Class %d is not correct.' % i)
 
     def test_mb_classes_poly(self):
+        """
+        Test the Maximum Breaks classifier for a polygon-based geographic model.
+        """
         sld = generator.as_maximum_breaks(Reservoir.objects.filter(name__startswith='City'), 'volume', 5, geofield='coastline')
    
         # request 5, get 2 back.
@@ -284,6 +377,9 @@ class ClassificationTest(unittest.TestCase):
             self.assertEqual(n.text, expected[i], 'Class %d is not correct.' % i)
 
     def test_nb_classes_pt(self):
+        """
+        Test the Natural Breaks classifier for a point-based geographic model.
+        """
         sld = generator.as_natural_breaks(Hydrant.objects.filter(pressure=1), 'number', 5, geofield='location')
 
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
@@ -298,6 +394,9 @@ class ClassificationTest(unittest.TestCase):
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
 
     def test_nb_classes_ln(self):
+        """
+        Test the Natural Breaks classifier for a line-based geographic model.
+        """
         sld = generator.as_natural_breaks(Pipeline.objects.filter(material='ceramic'), 'diameter', 5, geofield='path')
 
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
@@ -312,6 +411,9 @@ class ClassificationTest(unittest.TestCase):
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
 
     def test_nb_classes_poly(self):
+        """
+        Test the Natural Breaks classifier for a polygon-based geographic model.
+        """
         sld = generator.as_natural_breaks(Reservoir.objects.filter(name__startswith='City'), 'volume', 5, geofield='coastline')
 
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
@@ -326,6 +428,9 @@ class ClassificationTest(unittest.TestCase):
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
 
     def test_q_classes_pt(self):
+        """
+        Test the Quantiles classifier for a point-based geographic model.
+        """
         sld = generator.as_quantiles(Hydrant.objects.filter(pressure=1), 'number', 5, geofield='location')
 
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
@@ -339,6 +444,9 @@ class ClassificationTest(unittest.TestCase):
             self.assertEqual(n.text, expected[i], 'Class %d is not correct.' % i)
 
     def test_q_classes_ln(self):
+        """
+        Test the Quantiles classifier for a line-based geographic model.
+        """
         sld = generator.as_quantiles(Pipeline.objects.filter(material='ceramic'), 'diameter', 5, geofield='path')
 
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
@@ -352,6 +460,9 @@ class ClassificationTest(unittest.TestCase):
             self.assertEqual(n.text, expected[i], 'Class %d is not correct.' % i)
 
     def test_q_classes_poly(self):
+        """
+        Test the Quantiles classifier for a polygon-based geographic model.
+        """
         sld = generator.as_quantiles(Reservoir.objects.filter(name__startswith='City'), 'volume', 5, geofield='coastline')
 
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
@@ -365,6 +476,10 @@ class ClassificationTest(unittest.TestCase):
             self.assertEqual(n.text, expected[i], 'Class %d is not correct.' % i)
 
     def test_related_fields(self):
+        """
+        Test the queryset and style generation using django related fields
+        syntax.
+        """
         sld = generator.as_quantiles(Pipeline.objects.filter(material='ceramic'), 'reservoir__volume', 5, geofield='path')
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
 
