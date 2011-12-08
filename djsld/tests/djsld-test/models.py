@@ -10,7 +10,13 @@ class Hydrant(models.Model):
 class Pipeline(models.Model):
     material = models.CharField(max_length=25)
     path = models.LineStringField()
-    pressure = models.FloatField()
+    diameter = models.FloatField()
 
     objects = models.GeoManager()
 
+class Reservoir(models.Model):
+    name = models.CharField(max_length=25)
+    volume = models.FloatField()
+    coastline = models.PolygonField()
+
+    objects = models.GeoManager()

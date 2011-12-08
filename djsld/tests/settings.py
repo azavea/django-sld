@@ -26,5 +26,5 @@ POSTGIS_TEMPLATE = 'template_postgis'
 INSTALLED_APPS = (
     'django.contrib.gis',
     'djsld',
-    'sampleapp'
+    'djsld-test'
 )

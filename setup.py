@@ -46,7 +46,7 @@ class RunTests(Command):
         settings_mod = __import__(settings_file, {}, {}, [''])
         prev_argv = list(sys.argv)
         try:
-            sys.argv = [__file__, "test", "sampleapp"] + self.extra_args
+            sys.argv = [__file__, "test", "djsld-test"] + self.extra_args
             execute_manager(settings_mod, argv=sys.argv)
         finally:
             sys.argv = prev_argv
