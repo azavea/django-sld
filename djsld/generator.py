@@ -26,7 +26,7 @@ limitations under the License.
 @contact: dzwarg@azavea.com
 @copyright: 2011, Azavea
 @license: Apache 2.0
-@version: 1.0.0
+@version: 1.0.1
 """
 
 from sld import *
@@ -249,7 +249,7 @@ def _as_classification(classification, queryset, field, nclasses, geofield='geom
 
     @type  classification: pysal classifier
     @param classification: A classification class defined in 
-        pysal.esda.mapclassify. As of version 1.0.0, this list is comprised of:
+        pysal.esda.mapclassify. As of version 1.0.1, this list is comprised of:
 
           - Equal_Interval
           - Fisher_Jenks
