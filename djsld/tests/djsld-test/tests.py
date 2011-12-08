@@ -290,9 +290,11 @@ class ClassificationTest(unittest.TestCase):
 
         sld = generator.as_natural_breaks(Hydrant.objects.filter(pressure=2), 'number', 5, geofield='location')
 
-        # Cannot test the values, as the Natural Breaks documentation indicates that the
-        # consistency of breaks on multiple runs of the same data may not be consistent
-        # with the default number of solutions generated.
+        # Cannot test the values, as the Natural Breaks documentation indicates
+        # that the consistency of breaks on multiple runs of the same data may
+        # not be consistent with the default number of solutions generated. 
+        # Even with an extremely high initial solution value (10,000), these
+        # classes are still non-deterministic with the sample test data.
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
 
     def test_nb_classes_ln(self):
@@ -302,9 +304,11 @@ class ClassificationTest(unittest.TestCase):
 
         sld = generator.as_natural_breaks(Pipeline.objects.filter(material='concrete'), 'diameter', 5, geofield='path')
 
-        # Cannot test the values, as the Natural Breaks documentation indicates that the
-        # consistency of breaks on multiple runs of the same data may not be consistent
-        # with the default number of solutions generated.
+        # Cannot test the values, as the Natural Breaks documentation indicates
+        # that the consistency of breaks on multiple runs of the same data may
+        # not be consistent with the default number of solutions generated. 
+        # Even with an extremely high initial solution value (10,000), these
+        # classes are still non-deterministic with the sample test data.
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
 
     def test_nb_classes_poly(self):
@@ -314,9 +318,11 @@ class ClassificationTest(unittest.TestCase):
 
         sld = generator.as_natural_breaks(Reservoir.objects.filter(name__startswith='County'), 'volume', 5, geofield='coastline')
 
-        # Cannot test the values, as the Natural Breaks documentation indicates that the
-        # consistency of breaks on multiple runs of the same data may not be consistent
-        # with the default number of solutions generated.
+        # Cannot test the values, as the Natural Breaks documentation indicates
+        # that the consistency of breaks on multiple runs of the same data may
+        # not be consistent with the default number of solutions generated. 
+        # Even with an extremely high initial solution value (10,000), these
+        # classes are still non-deterministic with the sample test data.
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
 
     def test_q_classes_pt(self):
