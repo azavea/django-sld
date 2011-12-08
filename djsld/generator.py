@@ -9,7 +9,10 @@ from django.contrib.gis.db.models import fields
 def as_equal_interval(*args, **kwargs):
     """
     Generate equal interval classes from the provided queryset. If the queryset
-    is empty, no class breaks are returned.
+    is empty, no class breaks are returned. For more information on the Equal
+    Interval classifier, please visit:
+    
+    U{http://pysal.geodacenter.org/1.2/library/esda/mapclassify.html#pysal.esda.mapclassify.Equal_Interval}
 
     @type  queryset: QuerySet
     @param queryset: The query set that contains the entire distribution of
@@ -27,30 +30,190 @@ def as_equal_interval(*args, **kwargs):
     return _as_classification(Equal_Interval, *args, **kwargs)
 
 def as_fisher_jenks(*args, **kwargs):
+    """
+    Generate Fisher-Jenks classes from the provided queryset. If the queryset
+    is empty, no class breaks are returned. For more information on the Fisher
+    Jenks classifier, please visit:
+
+    U{http://pysal.geodacenter.org/1.2/library/esda/mapclassify.html#pysal.esda.mapclassify.Fisher_Jenks}
+
+    @type  queryset: QuerySet
+    @param queryset: The query set that contains the entire distribution of
+        data values.
+    @type  field: string
+    @param field: The name of the field on the model in the queryset that 
+        contains the data values.
+    @type  nclasses: integer
+    @param nclasses: The number of class breaks desired.
+    @type  geofield: string
+    @param geofield: The name of the geometry field. Defaults to 'geom'.
+    @rtype: L{sld.StyledLayerDescriptor}
+    @returns: An SLD object that represents the class breaks.
+    """
     return _as_classification(Fisher_Jenks, *args, **kwargs)
 
 def as_jenks_caspall(*args, **kwargs):
+    """
+    Generate Jenks-Caspall classes from the provided queryset. If the queryset
+    is empty, no class breaks are returned. For more information on the Jenks
+    Caspall classifier, please visit:
+
+    U{http://pysal.geodacenter.org/1.2/library/esda/mapclassify.html#pysal.esda.mapclassify.Jenks_Caspall}
+
+    @type  queryset: QuerySet
+    @param queryset: The query set that contains the entire distribution of
+        data values.
+    @type  field: string
+    @param field: The name of the field on the model in the queryset that 
+        contains the data values.
+    @type  nclasses: integer
+    @param nclasses: The number of class breaks desired.
+    @type  geofield: string
+    @param geofield: The name of the geometry field. Defaults to 'geom'.
+    @rtype: L{sld.StyledLayerDescriptor}
+    @returns: An SLD object that represents the class breaks.
+    """
     return _as_classification(Jenks_Caspall, *args, **kwargs)
 
 def as_jenks_caspall_forced(*args, **kwargs):
+    """
+    Generate Jenks-Caspall Forced classes from the provided queryset. If the queryset
+    is empty, no class breaks are returned. For more information on the Jenks
+    Caspall Forced classifier, please visit:
+
+    U{http://pysal.geodacenter.org/1.2/library/esda/mapclassify.html#pysal.esda.mapclassify.Jenks_Caspall_Forced}
+
+    @type  queryset: QuerySet
+    @param queryset: The query set that contains the entire distribution of
+        data values.
+    @type  field: string
+    @param field: The name of the field on the model in the queryset that 
+        contains the data values.
+    @type  nclasses: integer
+    @param nclasses: The number of class breaks desired.
+    @type  geofield: string
+    @param geofield: The name of the geometry field. Defaults to 'geom'.
+    @rtype: L{sld.StyledLayerDescriptor}
+    @returns: An SLD object that represents the class breaks.
+    """
     return _as_classification(Jenks_Caspall_Forced, *args, **kwargs)
 
 def as_jenks_caspall_sampled(*args, **kwargs):
+    """
+    Generate Jenks-Caspall Sampled classes from the provided queryset. If the queryset
+    is empty, no class breaks are returned. For more information on the Jenks
+    Caspall Sampled classifier, please visit:
+
+    U{http://pysal.geodacenter.org/1.2/library/esda/mapclassify.html#pysal.esda.mapclassify.Jenks_Caspall_Sampled}
+
+    @type  queryset: QuerySet
+    @param queryset: The query set that contains the entire distribution of
+        data values.
+    @type  field: string
+    @param field: The name of the field on the model in the queryset that 
+        contains the data values.
+    @type  nclasses: integer
+    @param nclasses: The number of class breaks desired.
+    @type  geofield: string
+    @param geofield: The name of the geometry field. Defaults to 'geom'.
+    @rtype: L{sld.StyledLayerDescriptor}
+    @returns: An SLD object that represents the class breaks.
+    """
     return _as_classification(Jenks_Caspall_Sampled, *args, **kwargs)
 
 def as_max_p_classifier(*args, **kwargs):
+    """
+    Generate Max P classes from the provided queryset. If the queryset
+    is empty, no class breaks are returned. For more information on the Max P
+    classifier, please visit:
+
+    U{http://pysal.geodacenter.org/1.2/library/esda/mapclassify.html#pysal.esda.mapclassify.Max_P_Classifier}
+
+    @type  queryset: QuerySet
+    @param queryset: The query set that contains the entire distribution of
+        data values.
+    @type  field: string
+    @param field: The name of the field on the model in the queryset that 
+        contains the data values.
+    @type  nclasses: integer
+    @param nclasses: The number of class breaks desired.
+    @type  geofield: string
+    @param geofield: The name of the geometry field. Defaults to 'geom'.
+    @rtype: L{sld.StyledLayerDescriptor}
+    @returns: An SLD object that represents the class breaks.
+    """
     return _as_classification(Max_P_Classifier, *args, **kwargs)
 
 def as_maximum_breaks(*args, **kwargs):
+    """
+    Generate Maximum Breaks classes from the provided queryset. If the queryset
+    is empty, no class breaks are returned. For more information on the Maximum
+    Breaks classifier, please visit:
+
+    U{http://pysal.geodacenter.org/1.2/library/esda/mapclassify.html#pysal.esda.mapclassify.Maximum_Breaks}
+
+    @type  queryset: QuerySet
+    @param queryset: The query set that contains the entire distribution of
+        data values.
+    @type  field: string
+    @param field: The name of the field on the model in the queryset that 
+        contains the data values.
+    @type  nclasses: integer
+    @param nclasses: The number of class breaks desired.
+    @type  geofield: string
+    @param geofield: The name of the geometry field. Defaults to 'geom'.
+    @rtype: L{sld.StyledLayerDescriptor}
+    @returns: An SLD object that represents the class breaks.
+    """
     return _as_classification(Maximum_Breaks, *args, **kwargs)
 
 def as_natural_breaks(*args, **kwargs):
+    """
+    Generate Natural Breaks classes from the provided queryset. If the queryset
+    is empty, no class breaks are returned. For more information on the Natural
+    Breaks classifier, please visit:
+
+    U{http://pysal.geodacenter.org/1.2/library/esda/mapclassify.html#pysal.esda.mapclassify.Natural_Breaks}
+
+    @type  queryset: QuerySet
+    @param queryset: The query set that contains the entire distribution of
+        data values.
+    @type  field: string
+    @param field: The name of the field on the model in the queryset that 
+        contains the data values.
+    @type  nclasses: integer
+    @param nclasses: The number of class breaks desired.
+    @type  geofield: string
+    @param geofield: The name of the geometry field. Defaults to 'geom'.
+    @rtype: L{sld.StyledLayerDescriptor}
+    @returns: An SLD object that represents the class breaks.
+    """
     return _as_classification(Natural_Breaks, *args, **kwargs)
 
 def as_quantiles(*args, **kwargs):
+    """
+    Generate Quantile classes from the provided queryset. If the queryset
+    is empty, no class breaks are returned. For more information on the Quantile
+    classifier, please visit:
+
+    U{http://pysal.geodacenter.org/1.2/library/esda/mapclassify.html#pysal.esda.mapclassify.Quantiles}
+
+    @type  queryset: QuerySet
+    @param queryset: The query set that contains the entire distribution of
+        data values.
+    @type  field: string
+    @param field: The name of the field on the model in the queryset that 
+        contains the data values.
+    @type  nclasses: integer
+    @param nclasses: The number of class breaks desired.
+    @type  geofield: string
+    @param geofield: The name of the geometry field. Defaults to 'geom'.
+    @rtype: L{sld.StyledLayerDescriptor}
+    @returns: An SLD object that represents the class breaks.
+    """
     return _as_classification(Quantiles, *args, **kwargs)
 
-def _as_classification(classification, queryset, field, nclasses, geofield='geom'):
+def _as_classification(classification, queryset, field, nclasses, geofield='geom', **kwargs):
     """
     Accept a queryset of objects, and return the values of the class breaks 
     on the data distribution. If the queryset is empty, no class breaks are
@@ -58,7 +221,7 @@ def _as_classification(classification, queryset, field, nclasses, geofield='geom
 
     @type  classification: pysal classifier
     @param classification: A classification class defined in 
-        pysal.esda.mapclassify. As of 12/2011, this list is comprised of:
+        pysal.esda.mapclassify. As of version 1.0.0, this list is comprised of:
 
           - Equal_Interval
           - Fisher_Jenks
@@ -78,6 +241,8 @@ def _as_classification(classification, queryset, field, nclasses, geofield='geom
     @param nclasses: The number of class breaks desired.
     @type  geofield: string
     @param geofield: The name of the geography column on the model. Defaults to 'geom'
+    @type    kwargs: keywords
+    @param   kwargs: Additional keyword arguments for the classifier.
     @rtype: L{sld.StyledLayerDescriptor}
     @returns: An SLD class object that represents the classification scheme 
         and filters.
@@ -94,7 +259,7 @@ def _as_classification(classification, queryset, field, nclasses, geofield='geom
         symbolizer = PointSymbolizer
 
     datavalues = array(queryset.order_by(field).values_list(field, flat=True))
-    q = classification(datavalues, nclasses)
+    q = classification(datavalues, nclasses, **kwargs)
 
     nl = thesld.create_namedlayer('%d breaks on "%s" as %s' % (nclasses, field, classification.__name__))
     us = nl.create_userstyle()
