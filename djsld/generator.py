@@ -26,7 +26,7 @@ limitations under the License.
 @contact: dzwarg@azavea.com
 @copyright: 2011, Azavea
 @license: Apache 2.0
-@version: 1.0.2
+@version: 1.0.3
 """
 
 from sld import *
@@ -241,7 +241,7 @@ def as_quantiles(*args, **kwargs):
     """
     return _as_classification(Quantiles, *args, **kwargs)
 
-def _as_classification(classification, queryset, field, nclasses, geofield='geom', **kwargs):
+def _as_classification(classification, queryset, field, nclasses, geofield='geom', propertyname=None, **kwargs):
     """
     Accept a queryset of objects, and return the values of the class breaks 
     on the data distribution. If the queryset is empty, no class breaks are
@@ -269,6 +269,8 @@ def _as_classification(classification, queryset, field, nclasses, geofield='geom
     @param nclasses: The number of class breaks desired.
     @type  geofield: string
     @param geofield: The name of the geography column on the model. Defaults to 'geom'
+    @type  propertyname: string
+    @param propertyname: The name of the filter property name, if different from the model field.
     @type    kwargs: keywords
     @param   kwargs: Additional keyword arguments for the classifier.
     @rtype: L{sld.StyledLayerDescriptor}
@@ -285,6 +287,9 @@ def _as_classification(classification, queryset, field, nclasses, geofield='geom
     else:
         # PointField, MultiPointField, GeometryField, or GeometryCollectionField
         symbolizer = PointSymbolizer
+
+    if propertyname is None:
+        propertyname = field
 
     datavalues = array(queryset.order_by(field).values_list(field, flat=True))
     q = classification(datavalues, nclasses, **kwargs)
@@ -317,12 +322,12 @@ def _as_classification(classification, queryset, field, nclasses, geofield='geom
         if i > 0:
             f_low = Filter(rule)
             f_low.PropertyIsGreaterThan = PropertyCriterion(f_low, 'PropertyIsGreaterThan')
-            f_low.PropertyIsGreaterThan.PropertyName = field
+            f_low.PropertyIsGreaterThan.PropertyName = propertyname
             f_low.PropertyIsGreaterThan.Literal = str(q.bins[i-1])
 
         f_high = Filter(rule)
         f_high.PropertyIsLessThanOrEqualTo = PropertyCriterion(f_high, 'PropertyIsLessThanOrEqualTo')
-        f_high.PropertyIsLessThanOrEqualTo.PropertyName = field
+        f_high.PropertyIsLessThanOrEqualTo.PropertyName = propertyname
         f_high.PropertyIsLessThanOrEqualTo.Literal = str(qbin)
 
        
