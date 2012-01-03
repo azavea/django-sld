@@ -1,0 +1,12 @@
+djsld	djsld-module.html
+djsld.generator	djsld.generator-module.html
+djsld.generator.as_natural_breaks	djsld.generator-module.html#as_natural_breaks
+djsld.generator._as_classification	djsld.generator-module.html#_as_classification
+djsld.generator.as_maximum_breaks	djsld.generator-module.html#as_maximum_breaks
+djsld.generator.as_fisher_jenks	djsld.generator-module.html#as_fisher_jenks
+djsld.generator.as_quantiles	djsld.generator-module.html#as_quantiles
+djsld.generator.as_equal_interval	djsld.generator-module.html#as_equal_interval
+djsld.generator.as_jenks_caspall_sampled	djsld.generator-module.html#as_jenks_caspall_sampled
+djsld.generator.as_jenks_caspall_forced	djsld.generator-module.html#as_jenks_caspall_forced
+djsld.generator.as_jenks_caspall	djsld.generator-module.html#as_jenks_caspall
+djsld.generator.as_max_p_classifier	djsld.generator-module.html#as_max_p_classifier

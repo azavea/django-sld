@@ -1,0 +1,838 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>djsld.generator</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="djsld-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/azaeva/django-sld/">django-sld</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="djsld-module.html">Package&nbsp;djsld</a> ::
+        Module&nbsp;generator
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="djsld.generator-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module generator</h1><p class="nomargin-top"><span class="codelink"><a href="djsld.generator-pysrc.html">source&nbsp;code</a></span></p>
+<p>Generate StyledLayerDescriptor objecs for django querysets.</p>
+  <p>This generator uses the python-sld and pysal libraries to generate 
+  classes for map classification, and returns a StyledLayerDescriptor class
+  object. This class object may be serialized to an SLD XML file, which is 
+  useful for many GIS and mapping software packages.</p>
+  <h1 class="heading">License</h1>
+    <p>Copyright 2011 David Zwarg &lt;<a href="mailto:dzwarg@azavea.com" 
+    target="_top">dzwarg@azavea.com</a>&gt;</p>
+    <p>Licensed under the Apache License, Version 2.0 (the 
+    &quot;License&quot;); you may not use this file except in compliance 
+    with the License. You may obtain a copy of the License at</p>
+    <p><a href="http://www.apache.org/licenses/LICENSE-2.0" 
+    target="_top">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+    <p>Unless required by applicable law or agreed to in writing, software 
+    distributed under the License is distributed on an &quot;AS IS&quot; 
+    BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
+    implied. See the License for the specific language governing 
+    permissions and limitations under the License.</p>
+
+<hr />
+<div class="fields">      <p><strong>Author:</strong>
+        David Zwarg
+      </p>
+      <p><strong>Contact:</strong>
+        dzwarg@azavea.com
+      </p>
+      <p><strong>Copyright:</strong>
+        2011, Azavea
+      </p>
+      <p><strong>License:</strong>
+        Apache 2.0
+      </p>
+      <p><strong>Version:</strong>
+        1.0.4
+      </p>
+</div><!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">sld.StyledLayerDescriptor</code></span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="djsld.generator-module.html#as_equal_interval" class="summary-sig-name">as_equal_interval</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Generate equal interval classes from the provided queryset.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="djsld.generator-pysrc.html#as_equal_interval">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">sld.StyledLayerDescriptor</code></span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="djsld.generator-module.html#as_fisher_jenks" class="summary-sig-name">as_fisher_jenks</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Generate Fisher-Jenks classes from the provided queryset.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="djsld.generator-pysrc.html#as_fisher_jenks">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">sld.StyledLayerDescriptor</code></span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="djsld.generator-module.html#as_jenks_caspall" class="summary-sig-name">as_jenks_caspall</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Generate Jenks-Caspall classes from the provided queryset.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="djsld.generator-pysrc.html#as_jenks_caspall">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">sld.StyledLayerDescriptor</code></span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="djsld.generator-module.html#as_jenks_caspall_forced" class="summary-sig-name">as_jenks_caspall_forced</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Generate Jenks-Caspall Forced classes from the provided queryset.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="djsld.generator-pysrc.html#as_jenks_caspall_forced">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">sld.StyledLayerDescriptor</code></span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="djsld.generator-module.html#as_jenks_caspall_sampled" class="summary-sig-name">as_jenks_caspall_sampled</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Generate Jenks-Caspall Sampled classes from the provided queryset.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="djsld.generator-pysrc.html#as_jenks_caspall_sampled">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">sld.StyledLayerDescriptor</code></span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="djsld.generator-module.html#as_max_p_classifier" class="summary-sig-name">as_max_p_classifier</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Generate Max P classes from the provided queryset.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="djsld.generator-pysrc.html#as_max_p_classifier">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">sld.StyledLayerDescriptor</code></span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="djsld.generator-module.html#as_maximum_breaks" class="summary-sig-name">as_maximum_breaks</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Generate Maximum Breaks classes from the provided queryset.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="djsld.generator-pysrc.html#as_maximum_breaks">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">sld.StyledLayerDescriptor</code></span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="djsld.generator-module.html#as_natural_breaks" class="summary-sig-name">as_natural_breaks</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Generate Natural Breaks classes from the provided queryset.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="djsld.generator-pysrc.html#as_natural_breaks">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">sld.StyledLayerDescriptor</code></span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="djsld.generator-module.html#as_quantiles" class="summary-sig-name">as_quantiles</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Generate Quantile classes from the provided queryset.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="djsld.generator-pysrc.html#as_quantiles">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">sld.StyledLayerDescriptor</code></span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="djsld.generator-module.html#_as_classification" class="summary-sig-name" onclick="show_private();">_as_classification</a>(<span class="summary-sig-arg">classification</span>,
+        <span class="summary-sig-arg">queryset</span>,
+        <span class="summary-sig-arg">field</span>,
+        <span class="summary-sig-arg">nclasses</span>,
+        <span class="summary-sig-arg">geofield</span>=<span class="summary-sig-default">'geom'</span>,
+        <span class="summary-sig-arg">propertyname</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">userstyletitle</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">featuretypestylename</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Accept a queryset of objects, and return the values of the class 
+      breaks on the data distribution.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="djsld.generator-pysrc.html#_as_classification">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<p class="indent-wrapped-lines"><b>Imports:</b>
+  <span title="sld.Symbolizer">Symbolizer</span>,
+  <span title="sld.Mark">Mark</span>,
+  <span title="sld.parse">parse</span>,
+  <span title="sld.FeatureTypeStyle">FeatureTypeStyle</span>,
+  <span title="sld.CssParameter">CssParameter</span>,
+  <span title="sld.copy">copy</span>,
+  <span title="sld.Rules">Rules</span>,
+  <span title="sld.StyledLayerDescriptor">StyledLayerDescriptor</span>,
+  <span title="sld.StyleItem">StyleItem</span>,
+  <span title="sld.NamedLayer">NamedLayer</span>,
+  <span title="sld.Graphic">Graphic</span>,
+  <span title="sld.CssParameters">CssParameters</span>,
+  <span title="sld.TextSymbolizer">TextSymbolizer</span>,
+  <span title="sld.urllib2">urllib2</span>,
+  <span title="sld.Rule">Rule</span>,
+  <span title="sld.Element">Element</span>,
+  <span title="sld.Filter">Filter</span>,
+  <span title="sld.tostring">tostring</span>,
+  <span title="sld.PropertyCriterion">PropertyCriterion</span>,
+  <span title="sld.XMLSchema">XMLSchema</span>,
+  <span title="sld.PolygonSymbolizer">PolygonSymbolizer</span>,
+  <span title="sld.UserStyle">UserStyle</span>,
+  <span title="sld.logging">logging</span>,
+  <span title="sld.PointSymbolizer">PointSymbolizer</span>,
+  <span title="sld.NamedTemporaryFile">NamedTemporaryFile</span>,
+  <span title="sld.XMLSyntaxError">XMLSyntaxError</span>,
+  <span title="sld.Stroke">Stroke</span>,
+  <span title="sld.SLDNode">SLDNode</span>,
+  <span title="sld.LineSymbolizer">LineSymbolizer</span>,
+  <span title="sld.Font">Font</span>,
+  <span title="sld.os">os</span>,
+  <span title="sld.Fill">Fill</span>,
+  <span title="numpy.array">array</span>,
+  <span title="numpy.ndarray">ndarray</span>,
+  <span title="pysal.esda.mapclassify.Jenks_Caspall">Jenks_Caspall</span>,
+  <span title="pysal.esda.mapclassify.Map_Classifier">Map_Classifier</span>,
+  <span title="pysal.esda.mapclassify.Std_Mean">Std_Mean</span>,
+  <span title="pysal.esda.mapclassify.Percentiles">Percentiles</span>,
+  <span title="pysal.esda.mapclassify.Fisher_Jenks">Fisher_Jenks</span>,
+  <span title="pysal.esda.mapclassify.Maximum_Breaks">Maximum_Breaks</span>,
+  <span title="pysal.esda.mapclassify.quantile">quantile</span>,
+  <span title="pysal.esda.mapclassify.Quantiles">Quantiles</span>,
+  <span title="pysal.esda.mapclassify.Natural_Breaks">Natural_Breaks</span>,
+  <span title="pysal.esda.mapclassify.Jenks_Caspall_Forced">Jenks_Caspall_Forced</span>,
+  <span title="pysal.esda.mapclassify.Max_P_Classifier">Max_P_Classifier</span>,
+  <span title="pysal.esda.mapclassify.K_classifiers">K_classifiers</span>,
+  <span title="pysal.esda.mapclassify.Box_Plot">Box_Plot</span>,
+  <span title="pysal.esda.mapclassify.Jenks_Caspall_Sampled">Jenks_Caspall_Sampled</span>,
+  <span title="pysal.esda.mapclassify.Equal_Interval">Equal_Interval</span>,
+  <span title="pysal.esda.mapclassify.gadf">gadf</span>,
+  <span title="pysal.esda.mapclassify.User_Defined">User_Defined</span>,
+  <span title="django.contrib.gis.db.models.fields">fields</span>
+</p><br />
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="as_equal_interval"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">as_equal_interval</span>(<span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="djsld.generator-pysrc.html#as_equal_interval">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generate equal interval classes from the provided queryset. If the 
+  queryset is empty, no class breaks are returned. For more information on 
+  the Equal Interval classifier, please visit:</p>
+  <p><a 
+  href="http://pysal.geodacenter.org/1.2/library/esda/mapclassify.html#pysal.esda.mapclassify.Equal_Interval"
+  
+  target="_top">http://pysal.geodacenter.org/1.2/library/esda/mapclassify.html#pysal.esda.mapclassify.Equal_Interval</a></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>queryset</code></strong> (QuerySet) - The query set that contains the entire distribution of data 
+          values.</li>
+        <li><strong class="pname"><code>field</code></strong> (string) - The name of the field on the model in the queryset that contains 
+          the data values.</li>
+        <li><strong class="pname"><code>nclasses</code></strong> (integer) - The number of class breaks desired.</li>
+        <li><strong class="pname"><code>geofield</code></strong> (string) - The name of the geometry field. Defaults to 'geom'.</li>
+    </ul></dd>
+    <dt>Returns: <code class="link">sld.StyledLayerDescriptor</code></dt>
+        <dd>An SLD object that represents the class breaks.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="as_fisher_jenks"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">as_fisher_jenks</span>(<span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="djsld.generator-pysrc.html#as_fisher_jenks">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generate Fisher-Jenks classes from the provided queryset. If the 
+  queryset is empty, no class breaks are returned. For more information on 
+  the Fisher Jenks classifier, please visit:</p>
+  <p><a 
+  href="http://pysal.geodacenter.org/1.2/library/esda/mapclassify.html#pysal.esda.mapclassify.Fisher_Jenks"
+  
+  target="_top">http://pysal.geodacenter.org/1.2/library/esda/mapclassify.html#pysal.esda.mapclassify.Fisher_Jenks</a></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>queryset</code></strong> (QuerySet) - The query set that contains the entire distribution of data 
+          values.</li>
+        <li><strong class="pname"><code>field</code></strong> (string) - The name of the field on the model in the queryset that contains 
+          the data values.</li>
+        <li><strong class="pname"><code>nclasses</code></strong> (integer) - The number of class breaks desired.</li>
+        <li><strong class="pname"><code>geofield</code></strong> (string) - The name of the geometry field. Defaults to 'geom'.</li>
+    </ul></dd>
+    <dt>Returns: <code class="link">sld.StyledLayerDescriptor</code></dt>
+        <dd>An SLD object that represents the class breaks.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="as_jenks_caspall"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">as_jenks_caspall</span>(<span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="djsld.generator-pysrc.html#as_jenks_caspall">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generate Jenks-Caspall classes from the provided queryset. If the 
+  queryset is empty, no class breaks are returned. For more information on 
+  the Jenks Caspall classifier, please visit:</p>
+  <p><a 
+  href="http://pysal.geodacenter.org/1.2/library/esda/mapclassify.html#pysal.esda.mapclassify.Jenks_Caspall"
+  
+  target="_top">http://pysal.geodacenter.org/1.2/library/esda/mapclassify.html#pysal.esda.mapclassify.Jenks_Caspall</a></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>queryset</code></strong> (QuerySet) - The query set that contains the entire distribution of data 
+          values.</li>
+        <li><strong class="pname"><code>field</code></strong> (string) - The name of the field on the model in the queryset that contains 
+          the data values.</li>
+        <li><strong class="pname"><code>nclasses</code></strong> (integer) - The number of class breaks desired.</li>
+        <li><strong class="pname"><code>geofield</code></strong> (string) - The name of the geometry field. Defaults to 'geom'.</li>
+    </ul></dd>
+    <dt>Returns: <code class="link">sld.StyledLayerDescriptor</code></dt>
+        <dd>An SLD object that represents the class breaks.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="as_jenks_caspall_forced"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">as_jenks_caspall_forced</span>(<span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="djsld.generator-pysrc.html#as_jenks_caspall_forced">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generate Jenks-Caspall Forced classes from the provided queryset. If 
+  the queryset is empty, no class breaks are returned. For more information
+  on the Jenks Caspall Forced classifier, please visit:</p>
+  <p><a 
+  href="http://pysal.geodacenter.org/1.2/library/esda/mapclassify.html#pysal.esda.mapclassify.Jenks_Caspall_Forced"
+  
+  target="_top">http://pysal.geodacenter.org/1.2/library/esda/mapclassify.html#pysal.esda.mapclassify.Jenks_Caspall_Forced</a></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>queryset</code></strong> (QuerySet) - The query set that contains the entire distribution of data 
+          values.</li>
+        <li><strong class="pname"><code>field</code></strong> (string) - The name of the field on the model in the queryset that contains 
+          the data values.</li>
+        <li><strong class="pname"><code>nclasses</code></strong> (integer) - The number of class breaks desired.</li>
+        <li><strong class="pname"><code>geofield</code></strong> (string) - The name of the geometry field. Defaults to 'geom'.</li>
+    </ul></dd>
+    <dt>Returns: <code class="link">sld.StyledLayerDescriptor</code></dt>
+        <dd>An SLD object that represents the class breaks.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="as_jenks_caspall_sampled"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">as_jenks_caspall_sampled</span>(<span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="djsld.generator-pysrc.html#as_jenks_caspall_sampled">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generate Jenks-Caspall Sampled classes from the provided queryset. If 
+  the queryset is empty, no class breaks are returned. For more information
+  on the Jenks Caspall Sampled classifier, please visit:</p>
+  <p><a 
+  href="http://pysal.geodacenter.org/1.2/library/esda/mapclassify.html#pysal.esda.mapclassify.Jenks_Caspall_Sampled"
+  
+  target="_top">http://pysal.geodacenter.org/1.2/library/esda/mapclassify.html#pysal.esda.mapclassify.Jenks_Caspall_Sampled</a></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>queryset</code></strong> (QuerySet) - The query set that contains the entire distribution of data 
+          values.</li>
+        <li><strong class="pname"><code>field</code></strong> (string) - The name of the field on the model in the queryset that contains 
+          the data values.</li>
+        <li><strong class="pname"><code>nclasses</code></strong> (integer) - The number of class breaks desired.</li>
+        <li><strong class="pname"><code>geofield</code></strong> (string) - The name of the geometry field. Defaults to 'geom'.</li>
+    </ul></dd>
+    <dt>Returns: <code class="link">sld.StyledLayerDescriptor</code></dt>
+        <dd>An SLD object that represents the class breaks.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="as_max_p_classifier"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">as_max_p_classifier</span>(<span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="djsld.generator-pysrc.html#as_max_p_classifier">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generate Max P classes from the provided queryset. If the queryset is 
+  empty, no class breaks are returned. For more information on the Max P 
+  classifier, please visit:</p>
+  <p><a 
+  href="http://pysal.geodacenter.org/1.2/library/esda/mapclassify.html#pysal.esda.mapclassify.Max_P_Classifier"
+  
+  target="_top">http://pysal.geodacenter.org/1.2/library/esda/mapclassify.html#pysal.esda.mapclassify.Max_P_Classifier</a></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>queryset</code></strong> (QuerySet) - The query set that contains the entire distribution of data 
+          values.</li>
+        <li><strong class="pname"><code>field</code></strong> (string) - The name of the field on the model in the queryset that contains 
+          the data values.</li>
+        <li><strong class="pname"><code>nclasses</code></strong> (integer) - The number of class breaks desired.</li>
+        <li><strong class="pname"><code>geofield</code></strong> (string) - The name of the geometry field. Defaults to 'geom'.</li>
+    </ul></dd>
+    <dt>Returns: <code class="link">sld.StyledLayerDescriptor</code></dt>
+        <dd>An SLD object that represents the class breaks.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="as_maximum_breaks"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">as_maximum_breaks</span>(<span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="djsld.generator-pysrc.html#as_maximum_breaks">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generate Maximum Breaks classes from the provided queryset. If the 
+  queryset is empty, no class breaks are returned. For more information on 
+  the Maximum Breaks classifier, please visit:</p>
+  <p><a 
+  href="http://pysal.geodacenter.org/1.2/library/esda/mapclassify.html#pysal.esda.mapclassify.Maximum_Breaks"
+  
+  target="_top">http://pysal.geodacenter.org/1.2/library/esda/mapclassify.html#pysal.esda.mapclassify.Maximum_Breaks</a></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>queryset</code></strong> (QuerySet) - The query set that contains the entire distribution of data 
+          values.</li>
+        <li><strong class="pname"><code>field</code></strong> (string) - The name of the field on the model in the queryset that contains 
+          the data values.</li>
+        <li><strong class="pname"><code>nclasses</code></strong> (integer) - The number of class breaks desired.</li>
+        <li><strong class="pname"><code>geofield</code></strong> (string) - The name of the geometry field. Defaults to 'geom'.</li>
+    </ul></dd>
+    <dt>Returns: <code class="link">sld.StyledLayerDescriptor</code></dt>
+        <dd>An SLD object that represents the class breaks.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="as_natural_breaks"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">as_natural_breaks</span>(<span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="djsld.generator-pysrc.html#as_natural_breaks">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generate Natural Breaks classes from the provided queryset. If the 
+  queryset is empty, no class breaks are returned. For more information on 
+  the Natural Breaks classifier, please visit:</p>
+  <p><a 
+  href="http://pysal.geodacenter.org/1.2/library/esda/mapclassify.html#pysal.esda.mapclassify.Natural_Breaks"
+  
+  target="_top">http://pysal.geodacenter.org/1.2/library/esda/mapclassify.html#pysal.esda.mapclassify.Natural_Breaks</a></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>queryset</code></strong> (QuerySet) - The query set that contains the entire distribution of data 
+          values.</li>
+        <li><strong class="pname"><code>field</code></strong> (string) - The name of the field on the model in the queryset that contains 
+          the data values.</li>
+        <li><strong class="pname"><code>nclasses</code></strong> (integer) - The number of class breaks desired.</li>
+        <li><strong class="pname"><code>geofield</code></strong> (string) - The name of the geometry field. Defaults to 'geom'.</li>
+    </ul></dd>
+    <dt>Returns: <code class="link">sld.StyledLayerDescriptor</code></dt>
+        <dd>An SLD object that represents the class breaks.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="as_quantiles"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">as_quantiles</span>(<span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="djsld.generator-pysrc.html#as_quantiles">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generate Quantile classes from the provided queryset. If the queryset 
+  is empty, no class breaks are returned. For more information on the 
+  Quantile classifier, please visit:</p>
+  <p><a 
+  href="http://pysal.geodacenter.org/1.2/library/esda/mapclassify.html#pysal.esda.mapclassify.Quantiles"
+  
+  target="_top">http://pysal.geodacenter.org/1.2/library/esda/mapclassify.html#pysal.esda.mapclassify.Quantiles</a></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>queryset</code></strong> (QuerySet) - The query set that contains the entire distribution of data 
+          values.</li>
+        <li><strong class="pname"><code>field</code></strong> (string) - The name of the field on the model in the queryset that contains 
+          the data values.</li>
+        <li><strong class="pname"><code>nclasses</code></strong> (integer) - The number of class breaks desired.</li>
+        <li><strong class="pname"><code>geofield</code></strong> (string) - The name of the geometry field. Defaults to 'geom'.</li>
+    </ul></dd>
+    <dt>Returns: <code class="link">sld.StyledLayerDescriptor</code></dt>
+        <dd>An SLD object that represents the class breaks.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_as_classification"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_as_classification</span>(<span class="sig-arg">classification</span>,
+        <span class="sig-arg">queryset</span>,
+        <span class="sig-arg">field</span>,
+        <span class="sig-arg">nclasses</span>,
+        <span class="sig-arg">geofield</span>=<span class="sig-default">'geom'</span>,
+        <span class="sig-arg">propertyname</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">userstyletitle</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">featuretypestylename</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="djsld.generator-pysrc.html#_as_classification">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Accept a queryset of objects, and return the values of the class 
+  breaks on the data distribution. If the queryset is empty, no class 
+  breaks are computed.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>classification</code></strong> (pysal classifier) - A classification class defined in pysal.esda.mapclassify. As of 
+          version 1.0.1, this list is comprised of:
+          <ul>
+            <li>
+              Equal_Interval
+            </li>
+            <li>
+              Fisher_Jenks
+            </li>
+            <li>
+              Jenks_Caspall
+            </li>
+            <li>
+              Jenks_Caspall_Forced
+            </li>
+            <li>
+              Jenks_Caspall_Sampled
+            </li>
+            <li>
+              Max_P_Classifier
+            </li>
+            <li>
+              Maximum_Breaks
+            </li>
+            <li>
+              Natural_Breaks
+            </li>
+            <li>
+              Quantiles
+            </li>
+          </ul></li>
+        <li><strong class="pname"><code>queryset</code></strong> (QuerySet) - The query set that contains the entire distribution of data 
+          values.</li>
+        <li><strong class="pname"><code>field</code></strong> (string) - The name of the field on the model in the queryset that contains 
+          the data values.</li>
+        <li><strong class="pname"><code>nclasses</code></strong> (integer) - The number of class breaks desired.</li>
+        <li><strong class="pname"><code>geofield</code></strong> (string) - The name of the geography column on the model. Defaults to 'geom'</li>
+        <li><strong class="pname"><code>propertyname</code></strong> (string) - The name of the filter property name, if different from the model
+          field.</li>
+        <li><strong class="pname"><code>userstyletitle</code></strong> (string) - The title of the UserStyle element.</li>
+        <li><strong class="pname"><code>featuretypestylename</code></strong> (string) - The name of the FeatureTypeStyle element.</li>
+        <li><strong class="pname"><code>kwargs</code></strong> (keywords) - Additional keyword arguments for the classifier.</li>
+    </ul></dd>
+    <dt>Returns: <code class="link">sld.StyledLayerDescriptor</code></dt>
+        <dd>An SLD class object that represents the classification scheme and
+          filters.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="djsld-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/azaeva/django-sld/">django-sld</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Tue Jan  3 15:13:18 2012
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
