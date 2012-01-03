@@ -59,13 +59,14 @@ class RunTests(Command):
 
 setup(
     name = "django-sld",
-    version = "1.0.3",
+    version = "1.0.4",
     author = "David Zwarg",
     author_email = "dzwarg@azavea.com",
     description = ("A simple django library that generates SLD documents from geographic models."),
     license = "Apache 2.0",
     keywords = "ogc sld geo geoserver mapserver osgeo geodjango",
-    url = "http://github.com/dzwarg/django-sld/",
+    url = "http://github.com/azavea/django-sld/",
+    requires = ["python-sld", "pysal"],
     packages = ["djsld","djsld.tests","djsld.tests.djsld-test"],
     long_description = read('README.markdown'),
     cmdclass={'test': RunTests},

@@ -61,4 +61,4 @@ Support
 =======
 
 If you have any problems, questions, or comments, please visit the django-sld
-project on github: https://github.com/dzwarg/django-sld/
+project on github: https://github.com/azavea/django-sld/
