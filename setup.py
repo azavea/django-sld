@@ -67,9 +67,8 @@ setup(
     keywords = "ogc sld geo geoserver mapserver osgeo geodjango",
     url = "http://github.com/azavea/django-sld/",
     requires = ["python_sld", "pysal", "scipy", "numpy"],
-    test_requires = ["django"],
     packages = ["djsld","djsld.tests","djsld.tests.djsld-test"],
-    long_description = read('README'),
+    long_description = read('README.markdown'),
     cmdclass={'test': RunTests},
     classifiers=[
         "Development Status :: 4 - Beta",
