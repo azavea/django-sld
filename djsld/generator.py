@@ -314,10 +314,7 @@ def _as_classification(classification, queryset, field, nclasses, geofield='geom
         title = '<= %s' % qbin
         rule = fts.create_rule(title, symbolizer=symbolizer)
 
-        shade = float(i) / (q.k - 1.0) * 255
-        if i == q.k:
-            shade = 255
-
+        shade = (float(q.k - i) / q.k ) * 255
         shade = '#%02x%02x%02x' % (shade, shade, shade,)
 
         if symbolizer == PointSymbolizer:
