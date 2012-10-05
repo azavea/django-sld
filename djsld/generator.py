@@ -8,7 +8,7 @@ GIS and mapping software packages.
 
 License
 =======
-Copyright 2011 David Zwarg <U{dzwarg@azavea.com}>
+Copyright 2011-2012 David Zwarg <U{dzwarg@azavea.com}>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -24,9 +24,9 @@ limitations under the License.
 
 @author: David Zwarg
 @contact: dzwarg@azavea.com
-@copyright: 2011, Azavea
+@copyright: 2011-2012, Azavea
 @license: Apache 2.0
-@version: 1.0.5
+@version: 1.0.6
 """
 
 from sld import *
@@ -242,7 +242,8 @@ def as_quantiles(*args, **kwargs):
     return _as_classification(Quantiles, *args, **kwargs)
 
 def _as_classification(classification, queryset, field, nclasses, geofield='geom', 
-    propertyname=None, userstyletitle=None, featuretypestylename=None, **kwargs):
+    propertyname=None, userstyletitle=None, featuretypestylename=None, colorbrewername='',
+    invertgradient=False, **kwargs):
     """
     Accept a queryset of objects, and return the values of the class breaks 
     on the data distribution. If the queryset is empty, no class breaks are
@@ -269,13 +270,17 @@ def _as_classification(classification, queryset, field, nclasses, geofield='geom
     @type  nclasses: integer
     @param nclasses: The number of class breaks desired.
     @type  geofield: string
-    @param geofield: The name of the geography column on the model. Defaults to 'geom'
+    @keyword geofield: The name of the geography column on the model. Defaults to 'geom'
     @type  propertyname: string
-    @param propertyname: The name of the filter property name, if different from the model field.
+    @keyword propertyname: The name of the filter property name, if different from the model field.
     @type  userstyletitle: string
-    @param userstyletitle: The title of the UserStyle element.
+    @keyword userstyletitle: The title of the UserStyle element.
     @type  featuretypestylename: string
-    @param featuretypestylename: The name of the FeatureTypeStyle element.
+    @keyword featuretypestylename: The name of the FeatureTypeStyle element.
+    @type    colorbrewername: string
+    @keyword colorbrewername: The name of a colorbrewer ramp name. Must have the same # of corresponding classes as nclasses.
+    @type    invertgradient: boolean
+    @keyword invertgradient: Should the resulting SLD have colors from high to low, instead of low to high?
     @type    kwargs: keywords
     @param   kwargs: Additional keyword arguments for the classifier.
     @rtype: L{sld.StyledLayerDescriptor}
@@ -307,6 +312,18 @@ def _as_classification(classification, queryset, field, nclasses, geofield='geom
     if not featuretypestylename is None:
         fts.Name = str(featuretypestylename)
 
+    shades = None
+    if q.k == nclasses and colorbrewername and not colorbrewername == '':
+        try:
+            import colorbrewer
+            shades = getattr(colorbrewer, colorbrewername)[nclasses]
+
+            if invertgradient:
+                shades.reverse()
+        except:
+            # could not import colorbrewer, or nclasses unavailable
+            pass
+
     for i,qbin in enumerate(q.bins):
         if type(qbin) == ndarray:
             qbin = qbin[0]
@@ -314,8 +331,13 @@ def _as_classification(classification, queryset, field, nclasses, geofield='geom
         title = '<= %s' % qbin
         rule = fts.create_rule(title, symbolizer=symbolizer)
 
-        shade = (float(q.k - i) / q.k ) * 255
-        shade = '#%02x%02x%02x' % (shade, shade, shade,)
+        if shades:
+            shade = '#%02x%02x%02x' % shades[i]
+        else:
+            shade = (float(q.k - i) / q.k ) * 255
+            if invertgradient:
+                shade = 255 - shade
+            shade = '#%02x%02x%02x' % (shade, shade, shade,)
 
         if symbolizer == PointSymbolizer:
             rule.PointSymbolizer.Graphic.Mark.Fill.CssParameters[0].Value = shade

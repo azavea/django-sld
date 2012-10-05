@@ -1,9 +1,10 @@
+#!/usr/bin/python
 """
 Setup script for django-sld.
 
 License
 =======
-Copyright 2011 David Zwarg <dzwarg@azavea.com>
+Copyright 2011-2012 David Zwarg <dzwarg@azavea.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -59,19 +60,19 @@ class RunTests(Command):
 
 setup(
     name = "django-sld",
-    version = "1.0.5",
+    version = "1.0.6",
     author = "David Zwarg",
     author_email = "dzwarg@azavea.com",
     description = ("A simple django library that generates SLD documents from geographic models."),
     license = "Apache 2.0",
     keywords = "ogc sld geo geoserver mapserver osgeo geodjango",
     url = "http://github.com/azavea/django-sld/",
-    requires = ["python_sld", "pysal", "scipy", "numpy"],
+    requires = ["python_sld", "pysal", "scipy", "numpy", "colorbrewer"],
     packages = ["djsld","djsld.tests","djsld.tests.djsld-test"],
     long_description = read('README.markdown'),
     cmdclass={'test': RunTests},
     classifiers=[
-        "Development Status :: 4 - Beta",
+        "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: Apache Software License",
         "Programming Language :: Python",

@@ -6,7 +6,7 @@ by the various classification methods.
 
 License
 =======
-Copyright 2011 David Zwarg <U{dzwarg@azavea.com}>
+Copyright 2011-2012 David Zwarg <U{dzwarg@azavea.com}>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -22,9 +22,9 @@ limitations under the License.
 
 @author: David Zwarg
 @contact: dzwarg@azavea.com
-@copyright: 2011, Azavea
+@copyright: 2011-2012, Azavea
 @license: Apache 2.0
-@version: 1.0.5
+@version: 1.0.6
 """
 
 import unittest, random
@@ -38,7 +38,8 @@ class ClassificationTest(unittest.TestCase):
     A set of test routines for the classification tools.
     """
 
-    def setUp(self):
+    @classmethod
+    def setUpClass(cls):
         """
         Set up the test data.
         """
@@ -62,7 +63,8 @@ class ClassificationTest(unittest.TestCase):
             h = Hydrant(number=y*y, pressure=2, location=GEOSGeometry('POINT(%d %d)'%(y,y,)), pipeline=p)
             h.save()
 
-    def tearDown(self):
+    @classmethod
+    def tearDownClass(cls):
         """
         Destroy the test data.
         """
@@ -187,10 +189,10 @@ class ClassificationTest(unittest.TestCase):
 
         # class literal nodes:
         literals = sld._node.xpath('//ogc:PropertyIsLessThanOrEqualTo/ogc:Literal',namespaces=sld._nsmap)
-        expected = ['324', '900', '1600', '2025', '2401']
+        expected = ['324', '784', '1296', '1849', '2401.0']
 
         for i,n in enumerate(literals):
-            self.assertEqual(n.text, expected[i], 'Class %d is not correct.' % i)
+            self.assertEqual(n.text, expected[i], 'Class %d is not correct. Expected "%s" / Actual "%s"' % (i, expected[i], n.text,))
 
     def test_fj_classes_ln(self):
         """
@@ -204,7 +206,7 @@ class ClassificationTest(unittest.TestCase):
 
         # class literal nodes:
         literals = sld._node.xpath('//ogc:PropertyIsLessThanOrEqualTo/ogc:Literal',namespaces=sld._nsmap)
-        expected = ['4.0', '11.0', '24.0', '36.0', '49.0']
+        expected = ['9.0', '19.0', '29.0', '39.0', '49.0']
 
         for i,n in enumerate(literals):
             self.assertEqual(n.text, expected[i], 'Class %d is not correct.' % i)
@@ -221,7 +223,7 @@ class ClassificationTest(unittest.TestCase):
 
         # class literal nodes:
         literals = sld._node.xpath('//ogc:PropertyIsLessThanOrEqualTo/ogc:Literal',namespaces=sld._nsmap)
-        expected = ['3610000.0', '9610000.0', '12960000.0', '16810000.0', '25000000.0']
+        expected = ['3240000.0', '7840000.0', '12960000.0', '18490000.0', '25000000.0']
 
         for i,n in enumerate(literals):
             self.assertEqual(n.text, expected[i], 'Class %d is not correct.' % i)
@@ -500,3 +502,81 @@ class ClassificationTest(unittest.TestCase):
 
         sld = generator.as_quantiles(Hydrant.objects.filter(pressure=1), 'pipeline__reservoir__volume', 5, geofield='location')
         self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
+
+    def test_colorbrewer_name(self):
+        """
+        Test the generation of shades using colorbrewer names.
+        """
+        sld = generator.as_quantiles(Hydrant.objects.filter(pressure=2), 'number', 5, geofield='location', 
+            colorbrewername='Greys')
+        self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
+
+        expected = [(247, 247, 247), (204, 204, 204), (150, 150, 150), (99, 99, 99), (37, 37, 37)]
+
+        shades = sld._node.xpath('//sld:Fill/sld:CssParameter[@name="fill"]',namespaces=sld._nsmap)
+        self.assertEqual(len(shades), 5)
+
+        for i,n in enumerate(shades):
+            exp_shade = '#%02x%02x%02x' % expected[i]
+            self.assertEqual(n.text, exp_shade, 'Shade %d is not correct.' % i)
+
+    def test_invert_gradient(self):
+        """
+        Test the generation of an inverted gradient.
+        """
+
+        # First, test the regular gradient
+        sld = generator.as_quantiles(Hydrant.objects.filter(pressure=2), 'number', 5, geofield='location', invertgradient=False)
+        self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
+
+        literals = sld._node.xpath('//ogc:PropertyIsLessThanOrEqualTo/ogc:Literal',namespaces=sld._nsmap)
+        expected = ['96.2', '384.4', '864.6', '1536.8', '2401.0']
+
+        for i,n in enumerate(literals):
+            self.assertEqual(n.text, expected[i], 'Class %d is not correct.' % i)
+
+        shades = sld._node.xpath('//sld:Fill/sld:CssParameter[@name="fill"]',namespaces=sld._nsmap)
+        self.assertEquals(len(shades), 5)
+
+        expected = [(255, 255, 255), (204, 204, 204), (153, 153, 153), (102, 102, 102), (51, 51, 51)]
+
+        for i,n in enumerate(shades):
+            exp_shade = '#%02x%02x%02x' % expected[i]
+            self.assertEqual(n.text, exp_shade, 'Shade %d is not correct. Expected: "%s" / Actual: "%s"' % (i, exp_shade, n.text,))
+
+        # Second, test the inverted gradient
+        sld = generator.as_quantiles(Hydrant.objects.filter(pressure=2), 'number', 5, geofield='location', invertgradient=True)
+        self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
+
+        literals = sld._node.xpath('//ogc:PropertyIsLessThanOrEqualTo/ogc:Literal',namespaces=sld._nsmap)
+        expected = ['96.2', '384.4', '864.6', '1536.8', '2401.0']
+
+        for i,n in enumerate(literals):
+            self.assertEqual(n.text, expected[i], 'Class %d is not correct.' % i)
+
+        shades = sld._node.xpath('//sld:Fill/sld:CssParameter[@name="fill"]',namespaces=sld._nsmap)
+        self.assertEquals(len(shades), 5)
+
+        expected = [(0, 0, 0), (51, 51, 51), (102, 102, 102), (153, 153, 153), (204, 204, 204)]
+
+        for i,n in enumerate(shades):
+            exp_shade = '#%02x%02x%02x' % expected[i]
+            self.assertEqual(n.text, exp_shade, 'Shade %d is not correct.' % i)
+
+    def test_inverted_colorbrewer(self):
+        """
+        Test the generation of shades using colorbrewer names, and inverted.
+        """
+        sld = generator.as_quantiles(Hydrant.objects.filter(pressure=2), 'number', 5, geofield='location', 
+            colorbrewername='Greys', invertgradient=True)
+        self.assertEqual(len(sld.NamedLayer.UserStyle.FeatureTypeStyle.Rules), 5)
+
+        expected = [(37, 37, 37), (99, 99, 99), (150, 150, 150), (204, 204, 204), (247, 247, 247)]
+
+        shades = sld._node.xpath('//sld:Fill/sld:CssParameter[@name="fill"]',namespaces=sld._nsmap)
+        self.assertEqual(len(shades), 5)
+
+        for i,n in enumerate(shades):
+            exp_shade = '#%02x%02x%02x' % expected[i]
+            self.assertEqual(n.text, exp_shade, 'Shade %d is not correct.' % i)
+
