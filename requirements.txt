@@ -3,3 +3,4 @@ numpy>=1.6.1
 scipy>=0.10.0
 pysal>=1.2.0
 python-sld>=1.0.5
+colorbrewer==0.1.1

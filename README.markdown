@@ -9,6 +9,7 @@ Requirements
   - *django* Required for models and spatial fields.
   - *python-sld* Required for reading and generating SLD XML files.
   - *pysal* Required for classification algorithms.
+  - *colorbrewer* Required for color lookup definitions.
 
 To install these requirements, you may use pip to install these packages
 (except for django) with this command:
