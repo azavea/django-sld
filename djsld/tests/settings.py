@@ -20,8 +20,7 @@ DATABASES = {
     }
 }
 
-TEST_RUNNER = 'django.contrib.gis.tests.run_tests'
-POSTGIS_TEMPLATE = 'template_postgis'
+POSTGIS_TEMPLATE = 'djsld_test'
 
 INSTALLED_APPS = (
     'django.contrib.gis',
