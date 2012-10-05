@@ -26,7 +26,7 @@ limitations under the License.
 @contact: dzwarg@azavea.com
 @copyright: 2011-2012, Azavea
 @license: Apache 2.0
-@version: 1.0.6
+@version: 1.0.7
 """
 
 from sld import *
@@ -301,9 +301,6 @@ def _as_classification(classification, queryset, field, nclasses, geofield='geom
     if propertyname is None:
         propertyname = field
 
-    datavalues = array(queryset.order_by(field).values_list(field, flat=True))
-    q = classification(datavalues, nclasses, **kwargs)
-
     nl = thesld.create_namedlayer('%d breaks on "%s" as %s' % (nclasses, field, classification.__name__))
     us = nl.create_userstyle()
     if not userstyletitle is None:
@@ -311,6 +308,29 @@ def _as_classification(classification, queryset, field, nclasses, geofield='geom
     fts = us.create_featuretypestyle()
     if not featuretypestylename is None:
         fts.Name = str(featuretypestylename)
+
+    # with just one class, make a single static style with no filters
+    if nclasses == 1:
+        rule = fts.create_rule(propertyname, symbolizer=symbolizer)
+        shade = 0 if invertgradient else 255
+        shade = '#%02x%02x%02x' % (shade, shade, shade,)
+
+        # no filters for one class
+        if symbolizer == PointSymbolizer:
+            rule.PointSymbolizer.Graphic.Mark.Fill.CssParameters[0].Value = shade
+        elif symbolizer == LineSymbolizer:
+            rule.LineSymbolizer.Stroke.CssParameters[0].Value = shade
+        elif symbolizer == PolygonSymbolizer:
+            rule.PolygonSymbolizer.Stroke.CssParameters[0].Value = '#000000'
+            rule.PolygonSymbolizer.Fill.CssParameters[0].Value = shade
+
+        thesld.normalize()
+
+        return thesld
+
+    # with more than one class, perform classification
+    datavalues = array(queryset.order_by(field).values_list(field, flat=True))
+    q = classification(datavalues, nclasses, **kwargs)
 
     shades = None
     if q.k == nclasses and colorbrewername and not colorbrewername == '':
@@ -344,6 +364,7 @@ def _as_classification(classification, queryset, field, nclasses, geofield='geom
         elif symbolizer == LineSymbolizer:
             rule.LineSymbolizer.Stroke.CssParameters[0].Value = shade
         elif symbolizer == PolygonSymbolizer:
+            rule.PolygonSymbolizer.Stroke.CssParameters[0].Value = '#000000'
             rule.PolygonSymbolizer.Fill.CssParameters[0].Value = shade
 
         # now add the filters

@@ -24,7 +24,7 @@ limitations under the License.
 @contact: dzwarg@azavea.com
 @copyright: 2011-2012, Azavea
 @license: Apache 2.0
-@version: 1.0.6
+@version: 1.0.7
 """
 
 import unittest, random

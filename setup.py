@@ -60,7 +60,7 @@ class RunTests(Command):
 
 setup(
     name = "django-sld",
-    version = "1.0.6",
+    version = "1.0.7",
     author = "David Zwarg",
     author_email = "dzwarg@azavea.com",
     description = ("A simple django library that generates SLD documents from geographic models."),
