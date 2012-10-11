@@ -58,6 +58,20 @@ this example, assume that *MySpatialModel* has a foreign key to a model named
 
     sld = generater.as_quantiles(qs, 'route__traffic', 10)
 
+By default, all the generator methods use a plain black-to-white color ramp.
+The number of classes must match an available color scheme, or the color ramp
+will default to black-to-white. You may specify a colorbrewer ramp name with 
+the *colorbrewername* keyword:
+
+    sld = generator.as_quantiles(qs, 'population', 9, colorbrewername='Greys')
+
+You may also reverse the order of the ramp, by specifying the *invertgradient*
+keyword:
+
+    sld = generator.as_quantiles(qs, 'population', 9, colorbrewername='Reds',
+        invertgradient=True)
+
+
 Support
 =======
 
