@@ -289,7 +289,7 @@ def _as_classification(classification, queryset, field, nclasses, geofield='geom
     """
     thesld = StyledLayerDescriptor()
 
-    ftype = queryset.model._meta.get_field_by_name(geofield)[0]
+    ftype = queryset.model._meta.get_field(geofield)
     if isinstance(ftype, fields.LineStringField) or isinstance(ftype, fields.MultiLineStringField):
         symbolizer = LineSymbolizer
     elif isinstance(ftype, fields.PolygonField) or isinstance(ftype, fields.MultiPolygonField):
